@@ -26,21 +26,21 @@
     </div>
     <button id="addBook">Add</button>
     <div class="form-popup" id="addBookForm">
-        <formclass="form-container">
+        <form class="form-container">
           <h3>Add a New Book!</h1>
       
           <label for="title"><b>Title</b></label><br>
-          <input type="text" placeholder="Enter Title" name="title" required><br><br>
+          <input type="text" placeholder="Enter Title" name="title" id="bookTitle" required><br><br>
       
           <label for="author"><b>Author</b></label><br>
-          <input type="text" placeholder="Enter Author" name="author" required><br><br>
+          <input type="text" placeholder="Enter Author" name="author" id="author" required><br><br>
 
           <label for="pages"><b>Number of Pages</b></label><br>
-          <input type="text" placeholder="Enter Page Amount" name="pages" required><br><br>
+          <input type="text" placeholder="Enter Page Amount" name="pages" id="pages" required><br><br>
 
           <label for="read"><b>Read?</b></label><br>
-          <input type="checkbox" name="read" required><br><br>
-          <button type="submit" class="btn">Add Book!</button>
+          <input type="checkbox" name="read" id="read" required><br><br>
+          <button type="submit" id="newBookSubmit" class="btn" onclick="addBookToLibrary()">Add Book!</button>
           <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
         </form>
       </div> 
