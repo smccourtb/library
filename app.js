@@ -1,20 +1,18 @@
+let myLibrary = [];
+
 function Book(title, author, numPages, read) {
     this.title = title;
     this.author = author;
     this.numPages = numPages;
     this.read = read;
-    this.info = function() {
-        if(this.read) {
-            this.read=true
-        }
-        return `${this.title} by ${this.author}, ${this.numPages} pages, ${this.read}`
-    }
 };
 
-const book1 = new Book('The Hobbit', 'J.R.R. Tolkien', 295, 'not read yet')
-
-
-let myLibrary = [];
+Book.prototype.info = function() {
+    if(this.read) {
+        this.read=true
+    };
+    return `${this.title} by ${this.author}, ${this.numPages} pages, ${this.read}`
+};
 
 function addBookToLibrary() {
     let title = document.getElementById("bookTitle").value
@@ -23,6 +21,7 @@ function addBookToLibrary() {
     let read = document.getElementById("read").value
     const book1 = new Book(title, author, pages, read)
     console.log(book1.info())
+    myLibrary.push(book1)
   }
 
 const addBookButton = document.getElementById("addBook")
@@ -34,6 +33,7 @@ addBookButton.addEventListener('click', () => {
 })
 submitNewBook.addEventListener('click', () => {
     addBookToLibrary();
+    closeForm();
 })
 
 // functions to show/hide form on button press
