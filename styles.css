@@ -1,4 +1,9 @@
 #addBookForm {
     display: none;
     border-style: solid;
+    width: auto;
+}
+
+table {
+    width: 1200px;
 }
