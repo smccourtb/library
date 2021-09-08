@@ -5,5 +5,17 @@
 }
 
 table {
-    width: 1200px;
+    border-collapse: collapse;
+    width: auto;
+    border-style: solid;
+}
+
+th {
+    height: 70px;
+    background-color: #04AA6D;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #dadada;
 }
