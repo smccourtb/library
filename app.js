@@ -65,6 +65,10 @@ function reloadLibrary(book) {
         // add a checkbox and apply 'read' status
         if(i === 'read') {
             const check = document.createElement('input');
+            check.addEventListener('click', () => {
+                updateRead(book)
+                console.log(this)
+            })
             check.setAttribute('type', 'checkbox')
             check.checked = book[i]
             data.appendChild(check)
@@ -72,17 +76,14 @@ function reloadLibrary(book) {
             remove.textContent= "Delete"
             remove.addEventListener('click', () => {
                 removeBookFromLibrary(book)
-            
             })
             data.appendChild(remove)
         }
         else {
             data.textContent = book[i]
         }
-        
         entry.appendChild(data)
     };
-    
     library.appendChild(entry)
 };
 
@@ -92,8 +93,16 @@ function removeBookFromLibrary(book) {
     const y = document.getElementsByTagName("TR")
     for(let i of y) {
         if(i.hasAttribute("data-index")) {
-            i.remove()
-        }
+            i.remove();
+        };
+    };
+};
+
+function updateRead(book) {
+    if(book.read) {
+        book.read = !book.read;
     }
-    // remove that specific row
+    else {
+        book.read = !book.read;
+    }
 }
