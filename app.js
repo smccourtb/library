@@ -34,7 +34,7 @@ addBookButton.addEventListener('click', () => {
 submitNewBook.addEventListener('click', () => {
     addBookToLibrary();
     closeForm();
-    // clearForm();
+    clearForm();
 })
 
 // functions to show/hide form on button press
@@ -47,7 +47,7 @@ function closeForm() {
   }
 
 function clearForm() {
-    const inputs = document.querySelectorAll("input")
+    const inputs = document.querySelectorAll(".formInput")
     for(i of inputs){
         i.value = "";
         if(i.type === "checkbox") {
@@ -63,7 +63,6 @@ function reloadLibrary(book) {
         const data = document.createElement('td');
         
         if(i === 'read') {
-            console.log(book[i])
             const check = document.createElement('input');
             check.setAttribute('type', 'checkbox')
             check.checked = book[i]
