@@ -34,7 +34,7 @@ addBookButton.addEventListener('click', () => {
 submitNewBook.addEventListener('click', () => {
     addBookToLibrary();
     closeForm();
-    clearForm();
+    // clearForm();
 })
 
 // functions to show/hide form on button press
@@ -61,12 +61,19 @@ function reloadLibrary(book) {
     const entry = document.createElement('tr')
     for(let i in book) {
         const data = document.createElement('td');
-        data.textContent = book[i]
+        
+        if(i === 'read') {
+            console.log(book[i])
+            const check = document.createElement('input');
+            check.setAttribute('type', 'checkbox')
+            check.checked = book[i]
+            data.appendChild(check)
+        }
+        else {
+            data.textContent = book[i]
+        }
+        
         entry.appendChild(data)
     };
     library.appendChild(entry)
 };
-// 1. get input from user using addBookToLibrary function
-// 2. store that input as a BOOK object (using Object.create()?)
-// 3. function to shows all book in the library with the relative info.
-// loop through my library and display the info

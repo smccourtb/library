@@ -1,13 +1,16 @@
 #addBookForm {
     display: none;
     border-style: solid;
-    width: auto;
+    width: 35%;
 }
 
 table {
     border-collapse: collapse;
-    width: auto;
+    width: 100%;
     border-style: solid;
+
+    margin: auto;
+    margin-top: 50px;
 }
 
 th {
@@ -18,4 +21,8 @@ th {
 
 tr:nth-child(even) {
     background-color: #dadada;
+}
+
+tr {
+    text-align: center;
 }
