@@ -61,12 +61,19 @@ function reloadLibrary(book) {
     const entry = document.createElement('tr')
     for(let i in book) {
         const data = document.createElement('td');
-        
+        // add a checkbox and apply 'read' status
         if(i === 'read') {
             const check = document.createElement('input');
             check.setAttribute('type', 'checkbox')
             check.checked = book[i]
             data.appendChild(check)
+            const remove = document.createElement('button')
+            remove.textContent= "Delete"
+            remove.addEventListener('click', () => {
+                removeBookFromLibrary(book)
+            
+            })
+            data.appendChild(remove)
         }
         else {
             data.textContent = book[i]
@@ -74,5 +81,11 @@ function reloadLibrary(book) {
         
         entry.appendChild(data)
     };
+    
     library.appendChild(entry)
 };
+
+function removeBookFromLibrary(book) {
+    const x = myLibrary.indexOf(book)
+    myLibrary.splice(x,1)
+}
