@@ -59,6 +59,7 @@ function clearForm() {
 
 function reloadLibrary(book) {
     const entry = document.createElement('tr')
+    entry.setAttribute("data-index", myLibrary.length)
     for(let i in book) {
         const data = document.createElement('td');
         // add a checkbox and apply 'read' status
@@ -88,4 +89,11 @@ function reloadLibrary(book) {
 function removeBookFromLibrary(book) {
     const x = myLibrary.indexOf(book)
     myLibrary.splice(x,1)
+    const y = document.getElementsByTagName("TR")
+    for(let i of y) {
+        if(i.hasAttribute("data-index")) {
+            i.remove()
+        }
+    }
+    // remove that specific row
 }
