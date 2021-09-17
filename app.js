@@ -1,4 +1,17 @@
-let myLibrary = [];
+const library = (() => {
+    let lib = [];
+    const addBook = () => {
+        let title = document.getElementById("bookTitle").value
+        let author = document.getElementById("author").value
+        let pages = document.getElementById("pages").value
+        let read = document.getElementById("read").checked
+    
+        const book1 = new Book(title, author, pages, read)
+        reloadLibrary(book1)
+        lib.push(book1)
+    }
+    return {lib, addBook};
+})();
 
 class Book {
     constructor(title, author, numPages, read) {
@@ -8,34 +21,26 @@ class Book {
         this.read = read;
     };
     info() { return `${this.title} by ${this.author}, ${this.numPages} pages, ${this.read}`};
+    updateRead() { 
+        if(read) {
+            read = !read;
+        }
+        else {
+            read = read;
+        };
+    };
 };
-
-// Book.prototype.info = function() {
-//     return `${this.title} by ${this.author}, ${this.numPages} pages, ${this.read}`
-// };
-
-function addBookToLibrary() {
-    let title = document.getElementById("bookTitle").value
-    let author = document.getElementById("author").value
-    let pages = document.getElementById("pages").value
-    let read = document.getElementById("read").checked
-    
-    const book1 = new Book(title, author, pages, read)
-    reloadLibrary(book1)
-    myLibrary.push(book1)
-   // localStorage.setItem("library", [myLibrary])
-  }
 
 const addBookButton = document.getElementById("addBook")
 const submitNewBook = document.getElementById("newBookSubmit")
 const addBookForm = document.getElementById("addBookForm")
-const library = document.querySelector("table")
+const table= document.querySelector("table")
 addBookButton.addEventListener('click', () => {
     openForm();
 })
 
 submitNewBook.addEventListener('click', () => {
-    addBookToLibrary();
+    library.addBook();
     closeForm();
     clearForm();
 })
@@ -60,16 +65,17 @@ function clearForm() {
     };
 };
 
+// adds a new row and updates the table
 function reloadLibrary(book) {
     const entry = document.createElement('tr')
-    entry.setAttribute("data-index", myLibrary.length)
+    entry.setAttribute("data-index", library.lib.length)
     for(let i in book) {
         const data = document.createElement('td');
         // add a checkbox and apply 'read' status
         if(i === 'read') {
             const check = document.createElement('input');
             check.addEventListener('click', () => {
-                updateRead(book)
+                Book.updateRead(book)
                 console.log(this)
             })
             check.setAttribute('type', 'checkbox')
@@ -87,12 +93,12 @@ function reloadLibrary(book) {
         }
         entry.appendChild(data)
     };
-    library.appendChild(entry)
+    table.appendChild(entry)
 };
 
 function removeBookFromLibrary(book) {
-    const x = myLibrary.indexOf(book)
-    myLibrary.splice(x,1)
+    const x = library.lib.indexOf(book)
+    library.lib.splice(x,1)
     const y = document.getElementsByTagName("TR")
     for(let i of y) {
         if(i.hasAttribute("data-index")) {
@@ -100,12 +106,3 @@ function removeBookFromLibrary(book) {
         };
     };
 };
-
-function updateRead(book) {
-    if(book.read) {
-        book.read = !book.read;
-    }
-    else {
-        book.read = !book.read;
-    }
-}
